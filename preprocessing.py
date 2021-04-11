@@ -3,14 +3,14 @@ import numpy as np
 from PIL import Image, ImageEnhance
 
 
-def random_augment_image(path, rfactor=0.14):
+def random_augment_image(image, rfactor=0.14):
 
     '''
     Returns PIL image.
 
     Params:
-        path: string. Path to image. Image default converts to RGB formats automaticaly.
-        rfactor: float. 
+        image: PIL.Image. Image for augmentations.
+        rfactor: float. If random values < rfactor then function returns non-augmented image.
 
     '''
 
@@ -73,12 +73,12 @@ def random_augment_image(path, rfactor=0.14):
         sharpness = ImageEnhance.Color(image)
         result_image = sharpness.enhance(factor)
         return result_image
+    
 
     def _adjust_random_rotation(image, max_angle=360):
         angle = np.random.randint(low=0, high=max_angle)
         return image.rotate(angle)
 
-    image = Image.open(path).convert('RGB')
 
     if np.random.rand() > rfactor:
         image = _adjust_random_brightness(image, low=0.7, high=2.0)
