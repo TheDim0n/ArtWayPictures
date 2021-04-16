@@ -24,6 +24,14 @@ def image_to_numpy(image):
 def central_crop(image, size):
 
     '''
+    Apply central crop for image to size.
+
+    Args:
+        image: PIL.Image object.
+        size: tuple. Size of target image.
+
+    Returns:
+        PIL.Image object.
     '''
 
     w, h = image.size
@@ -43,7 +51,7 @@ def load_image_from_path(path, format='RGB', target_size=None):
     Args:
         path: string. Local path to image.
         format: string. Formats to attempt to load the file in. Default 'RGB'.
-        target_size: tuple. If non None, resize image to target size. Default None. 
+        target_size: tuple. If not None, resize image to target size. Default None. 
 
     Returns:
         PIL.Image object.
